@@ -108,3 +108,75 @@ KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
                     .enableAllThrowException()
                     .modeConnection(new KcModeConnection().createIfNotExist(true))
 ```
+#### Quick map reduce
+Support implement map reduce quickly.
+Example count word:
+```
+QuickMapReduce qmr = new QuickMapReduce() {
+            @Override
+            public boolean acceptRecord(QuickMapReduce.Record record) {
+                return true;
+            }
+
+            @Override
+            public List<QuickMapReduce.Record> produceEmittedRecordsFromAcceptedRecord(QuickMapReduce.Record record) {
+                List<QuickMapReduce.Record> retList = new ArrayList<>();
+                String[] words = Strings.fromByteArray(record.getValue()).split(" ");
+                
+                for(String word: words){
+                    retList.add(new Record(Strings.toByteArray(word), Strings.toByteArray("1")));
+                }
+                
+                return retList;
+            }
+
+            @Override
+            public boolean accessFinalRecord(QuickMapReduce.FinalRecord finalRecord) {
+                
+                long count = 0;
+                
+                while(finalRecord.getIteratorValue().next()!= null){
+                    count++;
+                }
+                
+                System.out.println(Strings.fromByteArray(finalRecord.getKey())+":"+count);
+                
+                return true;
+            }
+        };
+mrh.execOnFile("./tmp").execute(db);        
+```
+
+#### Transaction task
+Transaction task support for transaction operations. When a task throw exception, all operations will be cancel
+```
+kcdb.execTransTask(new KcTransactionTask() {
+                @Override
+                public boolean executeTransactionTaskWith(DB instanceDB) throws Exception {
+                    
+                    String key1 = "test1";
+                    String val1 = "test1";
+
+                    String key2 = "test2";
+                    String val2 = "test2";
+
+                    String key3 = "test3";
+                    String val3 = "test3";
+
+                    String key4 = "test4";
+                    String val4 = "test4";
+
+                    boolean ret;
+
+                    //add records
+                    ret = instance.set(key1, val1);
+                    ret &= instance.set(key2, val2);
+                    ret &= instance.set(key3, val3);
+                    ret &= instance.set(key4, val4);
+                    
+                    if(!ret)
+                      throw new Exception("add fail");
+                    return true;
+                }
+            }, true);
+```
