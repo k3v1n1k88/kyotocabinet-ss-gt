@@ -108,6 +108,10 @@ KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
                     .modeConnection(new KcModeConnection().createIfNotExist(true).forceCreate(true))
                     .acceptClearDB(true);
 ```
+or more simple:
+```
+kcdb.setAcceptCreateFolder(true);
+```
 
 ##### Enable throw internal exception
 You can enable throw exceptions supported by kyotocabinet [View more](https://fallabs.com/kyotocabinet/api/classkyotocabinet_1_1BasicDB_1_1Error.html)
