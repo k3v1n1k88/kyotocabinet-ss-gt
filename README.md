@@ -63,16 +63,48 @@ kyotocabinet-ss-gt is supported tool for accesing KyotoCabinet Database safely a
 ### Create database
 ##### Create by constructor:
 ```
-KcBasicDB db = new KcFileHashDB("", "db", new KcModeConnection().createIfNotExist(true));
+KcBasicDB kcdb = new KcFileHashDB("/data/databases", "example", new KcModeConnection().createIfNotExist(true));
 ```
 ##### Create by arguments:
 ```
-KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
-                    .acceptCreateFolder()
+KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
 ###### :warning:  Before use it, remember start it
 ```
 kcdb.start();
+```
+###### Default when directory not existed, you have not permission to create folder, turn on it by:
+
+```
+KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
+                    .modeConnection(new KcModeConnection().createIfNotExist(true));
+kcdb = new KcFileHashDB(args);
+```
+or
+```
+KcBasicDB kcdb = new KcFileHashDB("/data/databases", "example", new KcModeConnection().createIfNotExist(true));
+kcdb.setAcceptCreateFolder(true);
+```
+#### Open database with truncate
+By default, you cannot use truncate options for safety. Because it can make loss all your data. However, you can use it by turn on force create and accept clear database.
+```
+KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
+                    .acceptClearDB(true)
+                    .modeConnection(new KcModeConnection().createIfNotExist(true).forceCreate(true));
+```
+or
+```
+kcdb.setModeConnection(new KcModeConnection().forceCreate(true));
+kcdb.setAcceptClearDB(true);
+```
+
+#### Enable throw internal exception
+You can enable throw exceptions supported by kyotocabinet [View more](https://fallabs.com/kyotocabinet/api/classkyotocabinet_1_1BasicDB_1_1Error.html)
+```
+KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
+                    .acceptClearDB(true)
+                    .enableAllThrowException()
+                    .modeConnection(new KcModeConnection().createIfNotExist(true))
 ```
