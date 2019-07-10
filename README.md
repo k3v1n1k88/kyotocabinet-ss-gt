@@ -72,7 +72,7 @@ KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
-:warning: Before use it, remember start it
+######:warning:  Before use it, remember start it
 ```
 kcdb.start();
 ```
