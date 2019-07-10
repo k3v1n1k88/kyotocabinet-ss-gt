@@ -71,7 +71,7 @@ KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
-###### :warning:  Before use it, remember start it
+##### :warning:  Before use it, remember start it
 ```
 kcdb.start();
 ```
@@ -178,10 +178,10 @@ kcdb.execTransTask(new KcTransactionTask() {
                     boolean ret;
 
                     //add records
-                    ret = instance.set(key1, val1);
-                    ret &= instance.set(key2, val2);
-                    ret &= instance.set(key3, val3);
-                    ret &= instance.set(key4, val4);
+                    ret = instanceDB.set(key1, val1);
+                    ret &= instanceDB.set(key2, val2);
+                    ret &= instanceDB.set(key3, val3);
+                    ret &= instanceDB.set(key4, val4);
                     
                     if(!ret)
                       throw new Exception("add fail");
