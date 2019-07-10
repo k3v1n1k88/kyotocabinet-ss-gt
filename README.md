@@ -1,4 +1,4 @@
-# About
+# Big ideas
 kyotocabinet-ss-gt is supported tool for accesing KyotoCabinet Database safely and speedy
 #### Why use it?
 - Easy to create all database types with all options supported by kyotocabinet 
@@ -193,3 +193,5 @@ kcdb.execTransTask(new KcTransactionTask() {
                 }
             }, true);
 ```
+# About
+Publish by [GT-Framework
