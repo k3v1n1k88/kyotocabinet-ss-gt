@@ -109,7 +109,7 @@ KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
                     .acceptClearDB(true);
 ```
 
-### Enable throw internal exception
+#### Enable throw internal exception
 You can enable throw exceptions supported by kyotocabinet [View more](https://fallabs.com/kyotocabinet/api/classkyotocabinet_1_1BasicDB_1_1Error.html)
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
