@@ -60,5 +60,19 @@ kyotocabinet-ss-gt is supported tool for accesing KyotoCabinet Database safely a
    8. Transaction task
    9. Support throw exception kyotocabinet.Error
 # Usage
-##### Create database
-KcBasicDB db = new KcFileHashDB()
+### Create database
+##### Create by constructor:
+```
+KcBasicDB db = new KcFileHashDB("", "db", new KcModeConnection().createIfNotExist(true));
+```
+##### Create by arguments:
+```
+KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
+                    .acceptCreateFolder()
+                    .modeConnection(new KcModeConnection().createIfNotExist(true));
+kcdb = new KcFileHashDB(args);
+```
+##### :warning: Before use it, remember start it
+```
+kcdb.start();
+```
