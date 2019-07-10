@@ -71,7 +71,7 @@ KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
-##### :warning:  Before use it, remember start it
+###### :warning:  Before use it, remember start it
 ```
 kcdb.start();
 ```
@@ -88,7 +88,7 @@ or
 KcBasicDB kcdb = new KcFileHashDB("/data/databases", "example", new KcModeConnection().createIfNotExist(true));
 kcdb.setAcceptCreateFolder(true);
 ```
-##### Open database with truncate
+###### Open database with truncate
 By default, you cannot use truncate options for safety. Because it can make loss all your data. However, you can use it by turn on force create and accept clear database.
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
