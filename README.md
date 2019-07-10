@@ -61,21 +61,21 @@ kyotocabinet-ss-gt is supported tool for accesing KyotoCabinet Database safely a
 #### 9. Support throw exception kyotocabinet.Error
 # Usage
 ### Create database
-#### Create by constructor:
+##### Create by constructor:
 ```
 KcBasicDB kcdb = new KcFileHashDB("/data/databases", "example", new KcModeConnection().createIfNotExist(true));
 ```
-#### Create by arguments:
+##### Create by arguments:
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
-##### :warning:  Before use it, remember start it
+###### :warning:  Before use it, remember start it
 ```
 kcdb.start();
 ```
-##### Default when directory not existed, you have not permission to create folder, turn on it by:
+###### Default when directory not existed, you have not permission to create folder, turn on it by:
 
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
@@ -88,7 +88,7 @@ or
 KcBasicDB kcdb = new KcFileHashDB("/data/databases", "example", new KcModeConnection().createIfNotExist(true));
 kcdb.setAcceptCreateFolder(true);
 ```
-#### Open database with truncate
+##### Open database with truncate
 By default, you cannot use truncate options for safety. Because it can make loss all your data. However, you can use it by turn on force create and accept clear database.
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
@@ -100,7 +100,7 @@ or
 kcdb.setModeConnection(new KcModeConnection().forceCreate(true));
 kcdb.setAcceptClearDB(true);
 ```
-#### Enable clear db
+##### Enable clear db
 Sometimes, programmers can execute a unexpected operation. It's maybe **clear()** function. By default, this function is  being forbidden. All efforts to use it will throw exception *PermissonException*. Turn off it by:
 
 ```
@@ -109,7 +109,7 @@ KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
                     .acceptClearDB(true);
 ```
 
-#### Enable throw internal exception
+##### Enable throw internal exception
 You can enable throw exceptions supported by kyotocabinet [View more](https://fallabs.com/kyotocabinet/api/classkyotocabinet_1_1BasicDB_1_1Error.html)
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
