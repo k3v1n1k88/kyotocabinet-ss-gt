@@ -79,6 +79,7 @@ kcdb.start();
 
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
+                    .acceptCreateFolder()
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
@@ -98,6 +99,14 @@ or
 ```
 kcdb.setModeConnection(new KcModeConnection().forceCreate(true));
 kcdb.setAcceptClearDB(true);
+```
+#### Enable clear db
+Sometimes, programmers can execute a unexpected operation. It's maybe **clear()** function. By default, this function is  being forbidden. All efforts to use it will throw exception *PermissonException*. Turn off it by:
+
+```
+KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
+                    .modeConnection(new KcModeConnection().createIfNotExist(true).forceCreate(true))
+                    .acceptClearDB(true);
 ```
 
 ### Enable throw internal exception
