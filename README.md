@@ -100,7 +100,7 @@ kcdb.setModeConnection(new KcModeConnection().forceCreate(true));
 kcdb.setAcceptClearDB(true);
 ```
 
-#### Enable throw internal exception
+### Enable throw internal exception
 You can enable throw exceptions supported by kyotocabinet [View more](https://fallabs.com/kyotocabinet/api/classkyotocabinet_1_1BasicDB_1_1Error.html)
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
@@ -108,7 +108,7 @@ KcFileHashDB.Args args = new KcFileHashDB.Args(dir, dbName)
                     .enableAllThrowException()
                     .modeConnection(new KcModeConnection().createIfNotExist(true))
 ```
-#### Quick map reduce
+### Quick map reduce
 Support implement map reduce quickly.
 Example count word:
 ```
@@ -147,7 +147,7 @@ QuickMapReduce qmr = new QuickMapReduce() {
 mrh.execOnFile("./tmp").execute(db);        
 ```
 
-#### Transaction task
+### Transaction task
 Transaction task support for transaction operations. When a task throw exception, all operations will be cancel
 ```
 kcdb.execTransTask(new KcTransactionTask() {
