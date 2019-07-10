@@ -61,21 +61,21 @@ kyotocabinet-ss-gt is supported tool for accesing KyotoCabinet Database safely a
 #### 9. Support throw exception kyotocabinet.Error
 # Usage
 ### Create database
-##### Create by constructor:
+#### Create by constructor:
 ```
 KcBasicDB kcdb = new KcFileHashDB("/data/databases", "example", new KcModeConnection().createIfNotExist(true));
 ```
-##### Create by arguments:
+#### Create by arguments:
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
                     .modeConnection(new KcModeConnection().createIfNotExist(true));
 kcdb = new KcFileHashDB(args);
 ```
-###### :warning:  Before use it, remember start it
+##### :warning:  Before use it, remember start it
 ```
 kcdb.start();
 ```
-###### Default when directory not existed, you have not permission to create folder, turn on it by:
+##### Default when directory not existed, you have not permission to create folder, turn on it by:
 
 ```
 KcFileHashDB.Args args = new KcFileHashDB.Args("/data/databases", "example")
